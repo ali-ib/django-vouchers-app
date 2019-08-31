@@ -1,0 +1,29 @@
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% bootstrap_messages %}
+{% load static %}
+<div class="pt-2 pl-4">
+    <a class="text-dark" href="/admin/">Admin</a>
+</div>
+
+<div class="form-container container">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="col-md-6 text-center mb-5">
+            <img src="{% static "vouchers/discount.png" %}" height="200" alt="Get Your Discount!">
+            <form action="." method="POST" class="form text-center mt-5">
+
+                {% csrf_token %}
+
+                <table>
+                    {% bootstrap_form form %}
+                </table>
+
+
+                {% buttons %}
+                <button type="submit" class="btn btn-primary w-25 mt-3">Check Code</button>
+                {% endbuttons %}
+            </form>
+        </div>
+    </div>
+</div>

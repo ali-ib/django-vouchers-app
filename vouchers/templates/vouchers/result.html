@@ -1,0 +1,21 @@
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% bootstrap_messages %}
+{% load static %}
+
+<div class="form-container container">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="col-md-6 text-center">
+            <div class="px-2 py-4 bg-light border rounded">
+                {% if valid %}
+                <img src="{% static "vouchers/valid.png" %}" alt="Valid Code">
+                {% else %}
+                <img src="{% static "vouchers/invalid.png" %}" alt="Invalid Code">
+                {% endif %}
+                <h4 class="my-3"> {{ msg }} </h4>
+            </div>
+            <a class="btn btn-primary mt-5" href="{% url 'check' %}">Try Another Code</a>
+        </div>
+    </div>
+</div>

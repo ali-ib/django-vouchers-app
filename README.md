@@ -14,6 +14,10 @@ After getting the packages ready, run the following commands to get the database
 
 >  ```python manage.py migrate```
 
+You need a superuser to access admin panel, you can create one using the following command:
+
+>  ```python manage.py createsuperuser```
+
 You're ready now to run the development server using the following command:
 
 >  ```python manage.py runserver```

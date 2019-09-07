@@ -1,19 +1,24 @@
 from django import forms
-import re
+from django.core.validators import RegexValidator
+
 
 class CheckForm(forms.Form):
-    code = forms.CharField(label='', max_length=12)
+    """This custom form defines the code-check form.
+
+    Attributes:
+        code (CharField): A char field to enter the code.
+    """
+
+    code = forms.CharField(label='', max_length=12, validators=[RegexValidator(
+        '^[A-Z0-9]{12}$', message="Invalid voucher code format.")])
 
     def __init__(self, *args, **kwargs):
+        """Inits the generated form."""
         super(CheckForm, self).__init__(*args, **kwargs)
-        self.fields['code'].widget.attrs['placeholder'] = 'Enter your Voucher Code here'
-        self.fields['code'].widget.attrs['class'] = 'text-center'
 
-    def clean_code(self):
-        """
-        Custom validator for the code field that makes sure its format is valid
-        """
-        code = self.cleaned_data['code']
-        if not re.match("^[A-Z0-9]{12}$", code):
-            raise forms.ValidationError("Invalid voucher code format.")
-        return code
+        # Set the placeholder of the code field.
+        self.fields['code'].widget.attrs['placeholder'] \
+            = 'Enter your Voucher Code here'
+
+        # Add 'text-center' class to the code field.
+        self.fields['code'].widget.attrs['class'] = 'text-center'

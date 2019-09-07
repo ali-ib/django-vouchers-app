@@ -13,7 +13,7 @@
                 {% else %}
                 <img src="{% static "vouchers/invalid.png" %}" alt="Invalid Code">
                 {% endif %}
-                <h4 class="my-3"> {{ msg }} </h4>
+                <h4 class="my-3"> {{ message }} </h4>
             </div>
             <a class="btn btn-primary mt-5" href="{% url 'check' %}">Try Another Code</a>
         </div>
